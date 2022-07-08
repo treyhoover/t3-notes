@@ -1,3 +1,5 @@
-# Create T3 App
+# T3 Notes
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+## [Demo](https://t3-notes.vercel.app/)
+
+![Demo](./public/t3-notes.gif)
