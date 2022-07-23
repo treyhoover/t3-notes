@@ -3,38 +3,39 @@ import { trpc } from "../utils/trpc";
 
 export const useNotes = () => {
   const session = useSession();
-  const { getQueryData, setQueryData } = trpc.useContext();
+  const utils = trpc.proxy.useContext();
 
-  const getNotesQuery = trpc.useQuery(["note.getNotes"], {
+  const getNotesQuery = trpc.proxy.notes.getNotes.useQuery(undefined, {
     enabled: session.status === "authenticated",
   });
 
-  const createNoteMutation = trpc.useMutation(["note.createNote"], {
+  const createNoteMutation = trpc.proxy.notes.createNote.useMutation({
     onMutate: (note) => {
-      const prevNotes = getQueryData(["note.getNotes"]) ?? [];
+      const prevNotes = utils.notes.getNotes.getData() ?? [];
       const nextNotes = [...prevNotes, note];
 
-      setQueryData(["note.getNotes"], nextNotes);
+      utils.notes.getNotes.setData(nextNotes);
 
       return prevNotes;
     },
     onSuccess: (response, input) => {
-      const prevNotes = getQueryData(["note.getNotes"]) ?? [];
+      const prevNotes = utils.notes.getNotes.getData() ?? [];
       const nextNotes = prevNotes.map((note) => {
         if (note.id !== input.id) return note;
 
         return response;
       });
 
-      setQueryData(["note.getNotes"], nextNotes);
+      utils.notes.getNotes.setData(nextNotes);
     },
     onError: (err, input, ctx) => {
-      setQueryData(["note.getNotes"], ctx ?? []);
+      utils.notes.getNotes.setData(ctx ?? []);
     },
   });
-  const updateNoteMutation = trpc.useMutation(["note.updateNote"], {
+
+  const updateNoteMutation = trpc.proxy.notes.updateNote.useMutation({
     onMutate: (update) => {
-      const prevNotes = getQueryData(["note.getNotes"]) ?? [];
+      const prevNotes = utils.notes.getNotes.getData() ?? [];
       const nextNotes = prevNotes.map((note) => {
         if (note.id !== update.id) return note;
 
@@ -44,26 +45,26 @@ export const useNotes = () => {
         };
       });
 
-      setQueryData(["note.getNotes"], nextNotes);
+      utils.notes.getNotes.setData(nextNotes);
 
       return prevNotes;
     },
     onError: (err, input, ctx) => {
-      setQueryData(["note.getNotes"], ctx ?? []);
+      utils.notes.getNotes.setData(ctx ?? []);
     },
   });
 
-  const deleteNoteMutation = trpc.useMutation(["note.deleteNote"], {
+  const deleteNoteMutation = trpc.proxy.notes.deleteNote.useMutation({
     onMutate: ({ id }) => {
-      const prevNotes = getQueryData(["note.getNotes"]) ?? [];
+      const prevNotes = utils.notes.getNotes.getData() ?? [];
       const nextNotes = prevNotes.filter((n) => n.id !== id);
 
-      setQueryData(["note.getNotes"], nextNotes);
+      utils.notes.getNotes.setData(nextNotes);
 
       return prevNotes;
     },
     onError: (err, input, ctx) => {
-      setQueryData(["note.getNotes"], ctx ?? []);
+      utils.notes.getNotes.setData(ctx ?? []);
     },
   });
 
