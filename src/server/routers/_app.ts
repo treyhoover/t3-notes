@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { t } from "~/server/trpc";
 import { authRouter } from "./auth";
 import { notesRouter } from "./notes";
 

@@ -3,8 +3,8 @@ import GithubProvider from "next-auth/providers/github";
 
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "../../../server/prisma";
-import { env } from "../../../server/env";
+import { prisma } from "~/server/prisma";
+import { env } from "~/server/env";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers

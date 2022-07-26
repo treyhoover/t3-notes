@@ -2,11 +2,11 @@ import { PlusSmIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useMemo, useRef } from "react";
 import colors from "tailwindcss/colors";
-import { useNotes } from "../hooks/useNotes";
-import { useStableCallback } from "../hooks/useStableCallback";
-import { isTmpId, tmpId } from "../utils/id";
-import { randomInt, sample } from "../utils/random";
-import { Note } from "./Note";
+import { useNotes } from "~/hooks/useNotes";
+import { useStableCallback } from "~/hooks/useStableCallback";
+import { isTmpId, tmpId } from "~/utils/id";
+import { randomInt, sample } from "~/utils/random";
+import { Note } from "~/components/Note";
 
 const defaultColorOptions = [
   colors.yellow["200"],

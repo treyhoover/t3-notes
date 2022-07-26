@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useCallback } from "react";
-import { NoteContainer } from "../components/NoteContainer";
+import { NoteContainer } from "~/components/NoteContainer";
 
 const Home: NextPage = () => {
   const session = useSession();

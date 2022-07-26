@@ -1,6 +1,6 @@
 import z from "zod";
 import { authMiddleware } from "./auth";
-import { t } from "../trpc";
+import { t } from "~/server/trpc";
 
 const NoteIDDTO = z.object({ id: z.string() });
 

@@ -2,10 +2,10 @@ import { XIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import debounce from "lodash.debounce";
-import { NoteDeleteDTO, NoteDTO, NoteUpdateDTO } from "../server/routers/notes";
+import { NoteDeleteDTO, NoteDTO, NoteUpdateDTO } from "~/server/routers/notes";
 import { Rnd } from "react-rnd";
-import { clamp } from "../utils/number";
-import { useStableCallback } from "../hooks/useStableCallback";
+import { clamp } from "~/utils/number";
+import { useStableCallback } from "~/hooks/useStableCallback";
 
 export interface NoteProps {
   note: NoteDTO;

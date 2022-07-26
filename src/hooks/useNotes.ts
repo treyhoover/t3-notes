@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { trpc } from "../utils/trpc";
+import { trpc } from "~/utils/trpc";
 
 export const useNotes = () => {
   const session = useSession();

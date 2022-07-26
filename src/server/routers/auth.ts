@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { t } from "../trpc";
+import { t } from "~/server/trpc";
 
 export const authRouter = t.router({
   getSession: t.procedure.query(({ ctx }) => ctx.session),
