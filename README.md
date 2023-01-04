@@ -1,5 +1,3 @@
 # T3 Notes
 
-## [Demo](https://t3-notes.vercel.app/)
-
-![Demo](./public/t3-notes.gif)
+A simple demo application of the t3 stack.
